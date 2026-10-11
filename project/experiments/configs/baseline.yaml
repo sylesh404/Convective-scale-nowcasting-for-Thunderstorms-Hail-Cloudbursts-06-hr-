@@ -1,0 +1,45 @@
+# Baseline Model Configuration (Persistence & Optical Flow)
+# SIH26084 MoES/NCMRWF Convective Nowcasting (Part 7)
+
+experiment_name: "baseline_evaluation"
+model_type: "persistence_and_optical_flow"
+random_seed: 42
+
+dataset:
+  name: "convective_nowcast_archive"
+  version: "v1.0-demo"
+  split_method: "chronological"
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+
+grid:
+  resolution_km: 3.0
+  grid_height: 64
+  grid_width: 64
+  lat_min: 8.0
+  lat_max: 38.0
+  lon_min: 68.0
+  lon_max: 98.0
+
+temporal:
+  input_interval_minutes: 15
+  forecast_interval_minutes: 30
+  input_history_hours: 1
+  forecast_hours: 6
+  input_frames: 4
+  forecast_frames: 12
+
+channels:
+  input_channels: 12
+  output_channels: 4
+  sources:
+    - "radar"
+    - "satellite"
+    - "lightning"
+    - "nwp"
+
+evaluation:
+  lead_times_minutes: [30, 60, 90, 120, 180, 240, 300, 360]
+  thresholds_dbz: [20.0, 35.0, 45.0, 55.0]
+  extreme_threshold_dbz: 45.0

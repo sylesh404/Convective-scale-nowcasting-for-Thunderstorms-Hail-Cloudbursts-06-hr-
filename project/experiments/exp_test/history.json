@@ -1,0 +1,17 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.9591,
+    "val_loss": 0.5914,
+    "lr": 0.001,
+    "duration_sec": 34.46,
+    "rainfall_loss": 0.0,
+    "lightning_loss": 0.0,
+    "hail_loss": 0.0,
+    "convective_loss": 0.0,
+    "val_rainfall_loss": 0.0,
+    "val_lightning_loss": 0.0,
+    "val_hail_loss": 0.0,
+    "val_convective_loss": 0.0
+  }
+]

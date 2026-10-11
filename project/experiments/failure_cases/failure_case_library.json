@@ -1,0 +1,52 @@
+{
+  "system": "NOWCAST AI — Convective Scale Weather Intelligence",
+  "sponsoring_organization": "Ministry of Earth Sciences (MoES) / NCMRWF",
+  "disclaimer": "Scientific error diagnosis library. Poor predictions and edge cases are documented to expose physical modeling limitations rather than concealed.",
+  "failure_cases": [
+    {
+      "case_id": "FAIL-001-RAPID-INITIATION",
+      "category": "rapid_storm_initiation",
+      "event_type": "Explosive Mountain Convection (Western Ghats)",
+      "observed": "Cell explosive growth from 15 dBZ to 55 dBZ in 22 minutes with severe downburst.",
+      "model_prediction": "Delayed detection (+45 min lead time lag), underpredicted peak reflectivity by 18 dBZ.",
+      "root_cause": "15-minute satellite/radar sampling interval missed pre-convective boundary layer convergence pulse before radar core ascent.",
+      "mitigation_pathway": "Incorporate AWS surface convergence tendency and Doppler radial convergence divergence flags."
+    },
+    {
+      "case_id": "FAIL-002-CELL-MERGER",
+      "category": "cell_merger",
+      "event_type": "Multicell Convective Complex Merger",
+      "observed": "Two adjacent thunderstorm cells merged into a single bow echo structure at T+60 min.",
+      "model_prediction": "Predicted two separate diverging trajectories; failed to model cold pool collision and merger.",
+      "root_cause": "ConvLSTM recurrence without explicit microphysical cold pool thermodynamics struggles with non-linear cell boundary collisions.",
+      "mitigation_pathway": "Integrate meso-scale cold pool boundary tracking and NWP low-level shear vectors."
+    },
+    {
+      "case_id": "FAIL-003-RADAR-ATTENUATION",
+      "category": "heavy_attenuation",
+      "event_type": "C-band / X-band Doppler Radar Signal Attenuation",
+      "observed": "Torrential rain core (>=60 dBZ) attenuated radar beam behind the first storm wall, creating artificial zero echo zone.",
+      "model_prediction": "Forecasted false rapid dissipation of the second trailing convective cell.",
+      "root_cause": "Radar reflectivity loss caused by path attenuation through torrential precipitation core.",
+      "mitigation_pathway": "Multi-source sensor fusion with INSAT-3D IR brightness temperature and lightning density to override attenuated radar shadow."
+    },
+    {
+      "case_id": "FAIL-004-SPARSE-LIGHTNING",
+      "category": "sparse_lightning",
+      "event_type": "Warm-Rain Cloudburst (Himalayan Foothills)",
+      "observed": "Localized extreme precipitation (>90 mm/hr) with near-zero optical lightning activity.",
+      "model_prediction": "Severely underestimated convective risk score due to lack of lightning flash inputs.",
+      "root_cause": "Warm-cloud collision-coalescence without deep mixed-phase graupel electrification yields negligible lightning despite intense precipitation.",
+      "mitigation_pathway": "Decouple cloudburst alert engine from lightning threshold; prioritize orographic vertical velocity and Integrated Water Vapour (IWV)."
+    },
+    {
+      "case_id": "FAIL-005-RADAR-BLIND-ZONE",
+      "category": "radar_gaps",
+      "event_type": "DWR Coverage Gap Beyond 250 km Radar Horizon",
+      "observed": "Active squall line entering coastal domain outside primary radar Doppler range.",
+      "model_prediction": "Zero reflectivity input at T0 propagated low hazard until cell breached 150 km range.",
+      "root_cause": "Radar beam elevation overshooting distant storm base and curvature of the Earth.",
+      "mitigation_pathway": "Automatic multi-sensor fallback to rapid-scan INSAT-3DR IR / WV channels and NWP convective indices when radar mask is zero."
+    }
+  ]
+}

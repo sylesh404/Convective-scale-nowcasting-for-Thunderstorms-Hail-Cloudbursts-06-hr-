@@ -1,0 +1,44 @@
+# Radar-Only Ablation Configuration
+# SIH26084 MoES/NCMRWF Convective Nowcasting (Part 7)
+
+experiment_name: "ablation_radar_only"
+model_type: "radar_convlstm"
+random_seed: 42
+
+dataset:
+  name: "convective_nowcast_archive"
+  version: "v1.0-demo"
+  split_method: "chronological"
+
+grid:
+  resolution_km: 3.0
+  grid_height: 64
+  grid_width: 64
+
+temporal:
+  input_frames: 4
+  forecast_frames: 12
+  forecast_interval_minutes: 30
+
+model:
+  architecture: "SingleStreamConvLSTM"
+  in_channels: 2
+  hidden_dim: 32
+  kernel_size: 3
+  learning_rate: 0.001
+  batch_size: 8
+  epochs: 25
+
+channels:
+  active_sources:
+    radar: true
+    satellite: false
+    lightning: false
+    nwp: false
+    aws: false
+
+loss_weights:
+  precipitation: 1.5
+  lightning: 0.0
+  hail: 0.0
+  convective: 0.5

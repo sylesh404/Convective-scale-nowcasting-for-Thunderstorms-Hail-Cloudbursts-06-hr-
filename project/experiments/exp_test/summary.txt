@@ -1,0 +1,6 @@
+SIH26084 Model Training Summary
+Model: MultiSourceNowcastNet (ConvLSTM-Fusion-v1.0)
+Completed Epochs: 1
+Best Val Loss: 0.5914
+Final LR: 0.001
+Timestamp: 2026-09-27T12:57:09.300818Z

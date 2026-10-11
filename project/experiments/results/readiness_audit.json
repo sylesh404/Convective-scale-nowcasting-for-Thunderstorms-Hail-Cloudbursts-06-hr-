@@ -1,0 +1,49 @@
+{
+  "system": "NOWCAST AI \u2014 SIH26084",
+  "classification": "RESEARCH PROTOTYPE",
+  "rationale": "Software architecture and AI multi-source pipelines are 100% functionally complete. However, operational classification is deferred to RESEARCH PROTOTYPE because MOSDAC/IMD live government credentials are still awaiting approval, and validation has been performed on synthetic demonstrations.",
+  "checks": {
+    "data": {
+      "status": "PROTOTYPE",
+      "live_mosdac_connected": false,
+      "real_dwr_feed_connected": false,
+      "synthetic_pipeline_active": true,
+      "verdict": "Demonstration pipeline active. Official MoES/MOSDAC API account approval pending."
+    },
+    "model": {
+      "status": "PASSED",
+      "checkpoint_exists": true,
+      "registry_metadata_valid": true,
+      "multi_hazard_heads": 4,
+      "downburst_head_status": "EXPLICIT_PLACEHOLDER_UNAVAILABLE"
+    },
+    "validation": {
+      "status": "PASSED",
+      "validation_report_exists": true,
+      "validation_results_json_exists": true,
+      "scientific_honesty_disclaimer_present": true
+    },
+    "infrastructure": {
+      "status": "PASSED",
+      "fastapi_backend_ready": true,
+      "docker_containerized": true,
+      "docker_compose_orchestrated": true
+    },
+    "security_and_grounding": {
+      "status": "PASSED",
+      "no_fabricated_metrics": true,
+      "disclaimers_prominent": true,
+      "role_based_access_mode": true
+    },
+    "documentation": {
+      "status": "PASSED",
+      "documents": {
+        "model-card.md": true,
+        "data-card.md": true,
+        "limitations.md": true,
+        "responsible-use.md": true,
+        "SIH-technical-report.md": true
+      }
+    }
+  }
+}

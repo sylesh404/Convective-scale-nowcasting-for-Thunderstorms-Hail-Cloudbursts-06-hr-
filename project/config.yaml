@@ -1,0 +1,48 @@
+# SIH26084 Convective Scale Weather Intelligence Platform Configuration
+# Domain: Atmospheric Sciences & Convective Nowcasting (0-6 hr)
+# Ministry of Earth Sciences (MoES) / NCMRWF
+
+# Operational Mode: 'demo' (synthetic fallback) or 'live' (official feeds)
+data_mode: "demo"
+
+# Spatial and Temporal Grid Resolution
+grid_resolution_km: 3
+forecast_hours: 6
+forecast_interval_minutes: 30
+
+# Target Geographic Extent (Himalayan / Northwest India Basin)
+spatial_extent:
+  name: "Himalayan Foothills & Indo-Gangetic Plain"
+  min_lat: 28.0
+  max_lat: 32.0
+  min_lon: 76.0
+  max_lon: 80.0
+  grid_height: 16
+  grid_width: 16
+
+# Data Provider Activation Flags
+providers:
+  radar_enabled: true
+  satellite_enabled: true
+  lightning_enabled: true
+  nwp_enabled: true
+  aws_enabled: true
+
+# MOSDAC Official Integration Configuration
+# (Credentials injected via environment variables MOSDAC_USERNAME, MOSDAC_PASSWORD, MOSDAC_API_KEY)
+mosdac:
+  base_url: "https://www.mosdac.gov.in"
+  api_endpoint: "https://api.mosdac.gov.in/v1"
+  satellite_dataset_id: "INSAT3D_L2B_HEM"
+  radar_dataset_id: "DWR_MAXZ"
+  lightning_dataset_id: "GLD_STRIKES"
+
+# Quality Control Thresholds
+quality_control:
+  radar_min_dbz: -32.0
+  radar_max_dbz: 95.0
+  humidity_min_pct: 0.0
+  humidity_max_pct: 100.0
+  temp_min_c: -90.0
+  temp_max_c: 65.0
+  max_data_age_seconds: 3600

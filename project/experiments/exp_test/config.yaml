@@ -1,0 +1,53 @@
+channels:
+  input_total: 12
+  lightning_channels: 1
+  nwp_channels: 6
+  output_channels: 4
+  output_names:
+  - precipitation
+  - lightning_density
+  - hail_probability
+  - convective_intensity
+  radar_channels: 2
+  rainfall_channels: 1
+  satellite_channels: 2
+grid:
+  grid_height: 64
+  grid_width: 64
+  lat_max: 38.0
+  lat_min: 8.0
+  lon_max: 98.0
+  lon_min: 68.0
+  resolution_km: 3.0
+loss_weights:
+  convective_intensity: 1.0
+  hail: 1.0
+  lightning: 1.2
+  precipitation: 1.5
+model:
+  convlstm_kernel: 3
+  dropout: 0.1
+  hidden_dim: 64
+  name: MultiSourceNowcastNet
+  version: ConvLSTM-Fusion-v1.0
+paths:
+  checkpoint_dir: training/training/checkpoints
+  data_dir: training/datasets/data
+  experiments_dir: experiments
+  normalization_file: training/preprocessing/normalization.json
+temporal:
+  forecast_frames: 12
+  forecast_hours: 6
+  forecast_interval_minutes: 30
+  input_frames: 4
+  input_history_hours: 1
+  input_interval_minutes: 15
+training:
+  batch_size: 4
+  early_stopping_patience: 3
+  epochs: 10
+  grad_clip_norm: 1.0
+  learning_rate: 0.001
+  mixed_precision: true
+  num_workers: 0
+  weight_decay: 0.0001

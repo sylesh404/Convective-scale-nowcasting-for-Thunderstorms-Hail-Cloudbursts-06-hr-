@@ -1,0 +1,81 @@
+# Full Multi-Source Fusion Model Configuration
+# SIH26084 MoES/NCMRWF Convective Nowcasting (Part 7)
+
+experiment_name: "full_multisource_fusion"
+model_type: "multisource_nowcast_net"
+random_seed: 42
+
+dataset:
+  name: "convective_nowcast_archive"
+  version: "v1.0-demo"
+  split_method: "chronological"
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+
+grid:
+  resolution_km: 3.0
+  grid_height: 64
+  grid_width: 64
+  lat_min: 8.0
+  lat_max: 38.0
+  lon_min: 68.0
+  lon_max: 98.0
+
+temporal:
+  input_interval_minutes: 15
+  forecast_interval_minutes: 30
+  input_history_hours: 1
+  forecast_hours: 6
+  input_frames: 4
+  forecast_frames: 12
+
+channels:
+  input_channels: 12
+  output_channels: 4
+  sources:
+    radar:
+      channels: 2
+      variables: ["reflectivity", "doppler_velocity"]
+    satellite:
+      channels: 2
+      variables: ["tir1_brightness_temp", "wv_brightness_temp"]
+    lightning:
+      channels: 2
+      variables: ["flash_density", "flash_rate_of_change"]
+    nwp:
+      channels: 6
+      variables: ["cape", "cin", "pwat", "u_wind_500", "v_wind_500", "temp_850"]
+
+model:
+  architecture: "MultiSourceNowcastNet"
+  encoder_dim: 16
+  hidden_dim: 64
+  future_steps: 12
+  heads:
+    - "radar_precipitation"
+    - "lightning_density"
+    - "hail_probability"
+    - "convective_intensity"
+  placeholders:
+    - "downburst"
+
+training:
+  batch_size: 4
+  learning_rate: 0.0005
+  weight_decay: 0.00001
+  epochs: 30
+  gradient_clip: 1.0
+  mixed_precision: true
+
+loss_weights:
+  precipitation: 1.5
+  lightning: 1.0
+  hail: 1.2
+  convective: 0.8
+  extreme_event_boost: 2.5
+
+evaluation:
+  lead_times_minutes: [30, 60, 90, 120, 180, 240, 300, 360]
+  thresholds_dbz: [20.0, 35.0, 45.0, 55.0]
+  extreme_threshold_dbz: 45.0

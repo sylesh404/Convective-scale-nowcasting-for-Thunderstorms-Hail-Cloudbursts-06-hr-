@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STORM-X • Operator Authentication</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Centralized Monochrome Design System -->
+    <link rel="stylesheet" href="/theme.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#000000] text-[#111111] dark:text-[#FFFFFF] transition-colors duration-200">
+
+    <!-- Top Minimal Header -->
+    <header class="border-b border-[#E5E5E5] dark:border-[#262626] bg-[#FFFFFF] dark:bg-[#0A0A0A] px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-lg bg-[#000000] dark:bg-[#FFFFFF] text-[#FFFFFF] dark:text-[#000000] flex items-center justify-center font-bold font-mono text-xs">
+                SX
+            </div>
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-mono font-semibold text-[#737373] dark:text-[#A3A3A3]">SIH26084 • MoES / NCMRWF</span>
+                </div>
+                <h1 class="text-sm font-semibold tracking-tight text-[#111111] dark:text-[#FFFFFF]">STORM-X</h1>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <a href="/ui" id="dashboardDirectLink" class="px-3 py-1.5 rounded-lg border border-[#E5E5E5] dark:border-[#262626] bg-[#FFFFFF] dark:bg-[#111111] hover:bg-[#F5F5F5] dark:hover:bg-[#1A1A1A] text-xs font-medium transition flex items-center space-x-1.5">
+                <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+                <span>Open Dashboard</span>
+            </a>
+            <div class="flex items-center space-x-1.5 px-2.5 py-1 rounded-[999px] border border-[#E5E5E5] dark:border-[#262626] text-[11px] font-mono text-[#737373] dark:text-[#A3A3A3]">
+                <span>●</span>
+                <span>SYSTEM READY</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-6">
+        <div class="max-w-[420px] w-full bg-[#FFFFFF] dark:bg-[#0A0A0A] rounded-[12px] border border-[#E5E5E5] dark:border-[#262626] p-7 shadow-[0_1px_3px_rgba(0,0,0,0.05)] space-y-6">
+            
+            <!-- Logo & Title -->
+            <div class="text-left space-y-1">
+                <div class="text-xs font-mono font-semibold tracking-wider uppercase text-[#737373] dark:text-[#A3A3A3]">
+                    OPERATOR CLEARANCE
+                </div>
+                <h2 class="text-2xl font-bold tracking-tight text-[#111111] dark:text-[#FFFFFF]">
+                    Sign In
+                </h2>
+                <p class="text-xs text-[#737373] dark:text-[#A3A3A3] leading-relaxed">
+                    Authorized access to convective nowcasting intelligence, radar matrices, and impact telemetry.
+                </p>
+            </div>
+
+            <!-- Role Selector Tabs -->
+            <div class="space-y-1.5">
+                <label class="block text-[11px] font-mono uppercase tracking-wider text-[#737373] dark:text-[#A3A3A3]">
+                    Operational Role
+                </label>
+                <div class="grid grid-cols-3 gap-1 p-1 bg-[#F5F5F5] dark:bg-[#111111] rounded-[8px] border border-[#E5E5E5] dark:border-[#262626]">
+                    <button type="button" onclick="setRole('meteorologist')" id="role-meteorologist" 
+                            class="role-btn py-1.5 px-2 rounded-[6px] text-xs font-medium transition text-center bg-[#000000] text-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000]">
+                        Meteorologist
+                    </button>
+                    <button type="button" onclick="setRole('commander')" id="role-commander" 
+                            class="role-btn py-1.5 px-2 rounded-[6px] text-xs font-medium transition text-center text-[#737373] dark:text-[#A3A3A3] hover:text-[#111111] dark:hover:text-[#FFFFFF]">
+                        Disaster HQ
+                    </button>
+                    <button type="button" onclick="setRole('admin')" id="role-admin" 
+                            class="role-btn py-1.5 px-2 rounded-[6px] text-xs font-medium transition text-center text-[#737373] dark:text-[#A3A3A3] hover:text-[#111111] dark:hover:text-[#FFFFFF]">
+                        SysAdmin
+                    </button>
+                </div>
+            </div>
+
+            <!-- One-Click Demo Fast-Fill -->
+            <div class="p-2.5 rounded-[8px] border border-[#E5E5E5] dark:border-[#262626] bg-[#FAFAFA] dark:bg-[#111111] flex items-center justify-between text-xs">
+                <span class="text-[#737373] dark:text-[#A3A3A3] font-mono text-[11px]">Demo Credentials:</span>
+                <div class="flex space-x-1.5">
+                    <button type="button" onclick="fillCreds('operator@ncmrwf.gov.in', 'radar2026!')" 
+                            class="text-[11px] font-mono px-2 py-0.5 rounded-[6px] border border-[#E5E5E5] dark:border-[#262626] bg-[#FFFFFF] dark:bg-[#0A0A0A] hover:bg-[#F5F5F5] dark:hover:bg-[#171717] transition">
+                        Default
+                    </button>
+                    <button type="button" onclick="fillCreds('admin@moes.gov.in', 'admin2026!')" 
+                            class="text-[11px] font-mono px-2 py-0.5 rounded-[6px] border border-[#E5E5E5] dark:border-[#262626] bg-[#FFFFFF] dark:bg-[#0A0A0A] hover:bg-[#F5F5F5] dark:hover:bg-[#171717] transition">
+                        Admin
+                    </button>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                
+                <!-- Feedback Alert Container -->
+                <div id="alertBox" class="hidden p-3 rounded-[8px] text-xs font-mono border flex items-center gap-2"></div>
+
+                <!-- Email Input -->
+                <div class="space-y-1">
+                    <label for="email" class="block text-xs font-medium text-[#111111] dark:text-[#FFFFFF]">
+                        Operator ID / Email
+                    </label>
+                    <input type="email" id="email" required value="operator@ncmrwf.gov.in"
+                           class="w-full px-3 py-2 bg-[#FFFFFF] dark:bg-[#0A0A0A] border border-[#D4D4D4] dark:border-[#262626] rounded-[8px] text-xs font-mono text-[#111111] dark:text-[#FFFFFF] placeholder-[#A3A3A3] focus:outline-none focus:border-[#000000] dark:focus:border-[#FFFFFF] transition"
+                           placeholder="operator@ncmrwf.gov.in">
+                </div>
+
+                <!-- Password Input -->
+                <div class="space-y-1">
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="block text-xs font-medium text-[#111111] dark:text-[#FFFFFF]">
+                            Access Key
+                        </label>
+                        <span class="text-[11px] text-[#737373] hover:text-[#111111] dark:hover:text-[#FFFFFF] cursor-pointer transition font-mono" onclick="showHelp()">
+                            Emergency Protocol?
+                        </span>
+                    </div>
+                    <div class="relative">
+                        <input type="password" id="password" required value="radar2026!"
+                               class="w-full px-3 py-2 pr-10 bg-[#FFFFFF] dark:bg-[#0A0A0A] border border-[#D4D4D4] dark:border-[#262626] rounded-[8px] text-xs font-mono text-[#111111] dark:text-[#FFFFFF] placeholder-[#A3A3A3] focus:outline-none focus:border-[#000000] dark:focus:border-[#FFFFFF] transition"
+                               placeholder="••••••••••••">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#737373] hover:text-[#111111] dark:hover:text-[#FFFFFF]">
+                            <i data-lucide="eye" id="eyeIcon" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sensing Node Cluster -->
+                <div class="space-y-1">
+                    <label for="nodeCluster" class="block text-xs font-medium text-[#111111] dark:text-[#FFFFFF]">
+                        Target Ingestion Node
+                    </label>
+                    <select id="nodeCluster" class="w-full px-3 py-2 bg-[#FFFFFF] dark:bg-[#0A0A0A] border border-[#D4D4D4] dark:border-[#262626] rounded-[8px] text-xs font-mono text-[#111111] dark:text-[#FFFFFF] focus:outline-none focus:border-[#000000] dark:focus:border-[#FFFFFF] transition">
+                        <option value="CLUSTER_HIMALAYAN_NORTH">DWR Himalayan Ridge (North Zone)</option>
+                        <option value="CLUSTER_WESTERN_GHATS">Western Ghats Convective Cluster</option>
+                        <option value="CLUSTER_CENTRAL_PLAINS">Central Plains Convective Corridor</option>
+                        <option value="SIMULATION_LOCAL">Offline Edge Node / Mock Telemetry Simulator</option>
+                    </select>
+                </div>
+
+                <!-- Remember Clearance -->
+                <div class="flex items-center justify-between text-xs text-[#737373] dark:text-[#A3A3A3] pt-1">
+                    <label class="flex items-center space-x-2 cursor-pointer font-mono">
+                        <input type="checkbox" id="rememberMe" checked class="rounded border-[#D4D4D4] text-[#000000] focus:ring-0">
+                        <span>Remember clearance</span>
+                    </label>
+                    <span class="text-[10px] font-mono text-[#737373] dark:text-[#A3A3A3]">TLS 256-BIT</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" 
+                        class="w-full py-2.5 px-4 rounded-[8px] bg-[#000000] text-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000] font-medium text-xs font-mono tracking-wide hover:opacity-90 active:scale-[0.99] transition disabled:opacity-50">
+                    <span id="btnText">AUTHENTICATE &amp; ENTER</span>
+                </button>
+            </form>
+
+            <!-- Bottom Note -->
+            <div class="pt-3 border-t border-[#E5E5E5] dark:border-[#262626] text-center space-y-1">
+                <p class="text-[11px] text-[#737373] dark:text-[#A3A3A3] font-mono">
+                    Convective Scale Nowcasting for Thunderstorms, Hail &amp; Cloudbursts (0–6 hr)
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer System Status Bar -->
+    <footer class="border-t border-[#E5E5E5] dark:border-[#262626] bg-[#FFFFFF] dark:bg-[#0A0A0A] px-6 py-2.5 text-[11px] font-mono text-[#737373] dark:text-[#A3A3A3] flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center space-x-4">
+            <span>● 18 DWR RADAR STATIONS</span>
+            <span>|</span>
+            <span>LATENCY: 14.8ms</span>
+            <span class="hidden sm:inline">|</span>
+            <span class="hidden sm:inline">HORIZON: 0–6 HOURS</span>
+        </div>
+        <div>
+            <span>STORM-X OPERATIONAL PLATFORM</span>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Update direct link based on file vs server path
+        if (window.location.protocol === 'file:' || window.location.pathname.endsWith('login.html')) {
+            const link = document.getElementById('dashboardDirectLink');
+            if (link) link.setAttribute('href', 'index.html');
+        }
+
+        let currentRole = 'meteorologist';
+
+        const rolesData = {
+            meteorologist: {
+                email: 'operator@ncmrwf.gov.in',
+                pass: 'radar2026!',
+                title: 'Senior Radar & Convection Meteorologist',
+                cluster: 'CLUSTER_HIMALAYAN_NORTH'
+            },
+            commander: {
+                email: 'commander@ndrf.gov.in',
+                pass: 'ndrf2026!',
+                title: 'Emergency Dispatch & Disaster Authority',
+                cluster: 'CLUSTER_WESTERN_GHATS'
+            },
+            admin: {
+                email: 'admin@moes.gov.in',
+                pass: 'admin2026!',
+                title: 'GIS Systems & Core Pipeline Administrator',
+                cluster: 'SIMULATION_LOCAL'
+            }
+        };
+
+        function setRole(role) {
+            currentRole = role;
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.className = 'role-btn py-1.5 px-2 rounded-[6px] text-xs font-medium transition text-center text-[#737373] dark:text-[#A3A3A3] hover:text-[#111111] dark:hover:text-[#FFFFFF]';
+            });
+            const activeBtn = document.getElementById(`role-${role}`);
+            if (activeBtn) {
+                activeBtn.className = 'role-btn py-1.5 px-2 rounded-[6px] text-xs font-medium transition text-center bg-[#000000] text-[#FFFFFF] dark:bg-[#FFFFFF] dark:text-[#000000]';
+            }
+            if (rolesData[role]) {
+                document.getElementById('email').value = rolesData[role].email;
+                document.getElementById('password').value = rolesData[role].pass;
+                document.getElementById('nodeCluster').value = rolesData[role].cluster;
+            }
+        }
+
+        function fillCreds(email, pass) {
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = pass;
+            showAlert('Credentials autofilled for instant demonstration.', 'info');
+        }
+
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                eyeIcon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                pwdInput.type = 'password';
+                eyeIcon.setAttribute('data-lucide', 'eye');
+            }
+            lucide.createIcons();
+        }
+
+        function showAlert(message, type = 'error') {
+            const box = document.getElementById('alertBox');
+            box.classList.remove('hidden', 'border-[#000000]', 'border-[#E5E5E5]', 'bg-[#FAFAFA]', 'text-[#111111]');
+            
+            box.className = 'p-3 rounded-[8px] text-xs font-mono border border-[#E5E5E5] dark:border-[#262626] bg-[#FAFAFA] dark:bg-[#111111] text-[#111111] dark:text-[#FFFFFF] flex items-center gap-2';
+            box.innerHTML = `<i data-lucide="info" class="w-4 h-4 shrink-0"></i><span>${message}</span>`;
+            lucide.createIcons();
+        }
+
+        function showHelp() {
+            showAlert('Emergency Clearance: Select any role or click Default/Admin for 1-click test credentials.', 'info');
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const cluster = document.getElementById('nodeCluster').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+
+            if (!email || !password) {
+                showAlert('Please provide both Operator ID and Access Key.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            btnText.textContent = 'VERIFYING OPERATOR CLEARANCE...';
+
+            const userSession = {
+                email: email,
+                role: currentRole,
+                roleTitle: rolesData[currentRole]?.title || 'Authorized Operator',
+                cluster: cluster,
+                authenticatedAt: new Date().toISOString(),
+                token: 'SIH26084-SECURE-' + Math.random().toString(36).substring(2, 10).toUpperCase()
+            };
+
+            try {
+                const response = await fetch('/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, cluster, role: currentRole })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.token) {
+                        userSession.token = data.token;
+                        if (data.roleTitle) userSession.roleTitle = data.roleTitle;
+                    }
+                }
+            } catch (err) {
+                console.log('Static/local fallback active');
+            }
+
+            localStorage.setItem('sih26084_user', JSON.stringify(userSession));
+
+            showAlert('Clearance Confirmed. Initializing Mission Control...', 'success');
+
+            setTimeout(() => {
+                const currentPath = window.location.pathname;
+                if (window.location.protocol === 'file:' || currentPath.includes('login.html')) {
+                    window.location.href = 'index.html';
+                } else {
+                    window.location.href = '/ui';
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "system": "NOWCAST AI \u2014 SIH26084",
+  "created_at": "2026-09-27T15:18:52.231404+00:00",
+  "experiments": {
+    "exp_part7_evaluation": {
+      "timestamp": "2026-09-27T15:20:01.225447+00:00",
+      "model_version": "ConvLSTM-Fusion-v1.0",
+      "status": "DEMO",
+      "lead_30m_csi": 0.728,
+      "lead_60m_csi": 0.76,
+      "mean_rmse": 7.04,
+      "run_file": "experiments\\runs\\exp_part7_evaluation.json"
+    }
+  }
+}

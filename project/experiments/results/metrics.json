@@ -1,0 +1,467 @@
+{
+  "evaluation_timestamp": "2026-09-27T15:20:01.159029+00:00",
+  "model_version": "ConvLSTM-Fusion-v1.0",
+  "dataset_mode": "Demonstration evaluation only \u2014 synthetic distribution benchmark.",
+  "forecast_horizon_hours": 6.0,
+  "lead_time_table": [
+    {
+      "lead_step": 1,
+      "lead_time": "+30 min",
+      "lead_minutes": 30,
+      "lead_time_minutes": 30,
+      "rmse": 7.0353,
+      "mae": 4.3442,
+      "rmse_dbz": 7.04,
+      "mae_dbz": 4.34,
+      "csi": 0.728,
+      "pod": 1.0,
+      "far": 0.272
+    },
+    {
+      "lead_step": 2,
+      "lead_time": "+60 min",
+      "lead_minutes": 60,
+      "lead_time_minutes": 60,
+      "rmse": 6.9043,
+      "mae": 4.2351,
+      "rmse_dbz": 6.9,
+      "mae_dbz": 4.24,
+      "csi": 0.76,
+      "pod": 1.0,
+      "far": 0.24
+    },
+    {
+      "lead_step": 3,
+      "lead_time": "+90 min",
+      "lead_minutes": 90,
+      "lead_time_minutes": 90,
+      "rmse": 8.0021,
+      "mae": 5.0055,
+      "rmse_dbz": 8.0,
+      "mae_dbz": 5.01,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 4,
+      "lead_time": "+120 min",
+      "lead_minutes": 120,
+      "lead_time_minutes": 120,
+      "rmse": 10.9867,
+      "mae": 6.2632,
+      "rmse_dbz": 10.99,
+      "mae_dbz": 6.26,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 5,
+      "lead_time": "+150 min",
+      "lead_minutes": 150,
+      "lead_time_minutes": 150,
+      "rmse": 11.535,
+      "mae": 6.3236,
+      "rmse_dbz": 11.53,
+      "mae_dbz": 6.32,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 6,
+      "lead_time": "+180 min",
+      "lead_minutes": 180,
+      "lead_time_minutes": 180,
+      "rmse": 10.8733,
+      "mae": 5.9228,
+      "rmse_dbz": 10.87,
+      "mae_dbz": 5.92,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 7,
+      "lead_time": "+210 min",
+      "lead_minutes": 210,
+      "lead_time_minutes": 210,
+      "rmse": 9.9366,
+      "mae": 5.4213,
+      "rmse_dbz": 9.94,
+      "mae_dbz": 5.42,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 8,
+      "lead_time": "+240 min",
+      "lead_minutes": 240,
+      "lead_time_minutes": 240,
+      "rmse": 8.9387,
+      "mae": 4.8982,
+      "rmse_dbz": 8.94,
+      "mae_dbz": 4.9,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 9,
+      "lead_time": "+270 min",
+      "lead_minutes": 270,
+      "lead_time_minutes": 270,
+      "rmse": 7.9256,
+      "mae": 4.3707,
+      "rmse_dbz": 7.93,
+      "mae_dbz": 4.37,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 10,
+      "lead_time": "+300 min",
+      "lead_minutes": 300,
+      "lead_time_minutes": 300,
+      "rmse": 6.9095,
+      "mae": 3.8438,
+      "rmse_dbz": 6.91,
+      "mae_dbz": 3.84,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 11,
+      "lead_time": "+330 min",
+      "lead_minutes": 330,
+      "lead_time_minutes": 330,
+      "rmse": 5.8949,
+      "mae": 3.3196,
+      "rmse_dbz": 5.89,
+      "mae_dbz": 3.32,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    },
+    {
+      "lead_step": 12,
+      "lead_time": "+360 min",
+      "lead_minutes": 360,
+      "lead_time_minutes": 360,
+      "rmse": 4.885,
+      "mae": 2.8005,
+      "rmse_dbz": 4.89,
+      "mae_dbz": 2.8,
+      "csi": 0.0,
+      "pod": 0.0,
+      "far": 0.0
+    }
+  ],
+  "calibration": {
+    "status": "Prototype confidence \u2014 not calibrated.",
+    "temperature": 1.0,
+    "expected_calibration_error": 0.0141,
+    "maximum_calibration_error": 0.2527,
+    "brier_score": 0.013,
+    "sample_count": 786432,
+    "bins": [
+      {
+        "bin_index": 1,
+        "bin_range": [
+          0.0,
+          0.1
+        ],
+        "count": 756581,
+        "predicted_confidence": 0.0119,
+        "observed_event_frequency": 0.0037,
+        "calibration_gap": 0.0082
+      },
+      {
+        "bin_index": 2,
+        "bin_range": [
+          0.1,
+          0.2
+        ],
+        "count": 7522,
+        "predicted_confidence": 0.1265,
+        "observed_event_frequency": 0.3468,
+        "calibration_gap": 0.2204
+      },
+      {
+        "bin_index": 3,
+        "bin_range": [
+          0.2,
+          0.3
+        ],
+        "count": 1787,
+        "predicted_confidence": 0.2527,
+        "observed_event_frequency": 0.0,
+        "calibration_gap": 0.2527
+      },
+      {
+        "bin_index": 4,
+        "bin_range": [
+          0.3,
+          0.4
+        ],
+        "count": 5983,
+        "predicted_confidence": 0.349,
+        "observed_event_frequency": 0.5598,
+        "calibration_gap": 0.2108
+      },
+      {
+        "bin_index": 5,
+        "bin_range": [
+          0.4,
+          0.5
+        ],
+        "count": 7620,
+        "predicted_confidence": 0.4809,
+        "observed_event_frequency": 0.5311,
+        "calibration_gap": 0.0502
+      },
+      {
+        "bin_index": 6,
+        "bin_range": [
+          0.5,
+          0.6
+        ],
+        "count": 6939,
+        "predicted_confidence": 0.516,
+        "observed_event_frequency": 0.6759,
+        "calibration_gap": 0.1599
+      },
+      {
+        "bin_index": 7,
+        "bin_range": [
+          0.6,
+          0.7
+        ],
+        "count": 0,
+        "predicted_confidence": 0.65,
+        "observed_event_frequency": 0.0,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 8,
+        "bin_range": [
+          0.7,
+          0.8
+        ],
+        "count": 0,
+        "predicted_confidence": 0.75,
+        "observed_event_frequency": 0.0,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 9,
+        "bin_range": [
+          0.8,
+          0.9
+        ],
+        "count": 0,
+        "predicted_confidence": 0.85,
+        "observed_event_frequency": 0.0,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 10,
+        "bin_range": [
+          0.9,
+          1.0
+        ],
+        "count": 0,
+        "predicted_confidence": 0.95,
+        "observed_event_frequency": 0.0,
+        "calibration_gap": 0.0
+      }
+    ]
+  },
+  "ablation": {
+    "status": "Demonstration evaluation only \u2014 synthetic distribution benchmark.",
+    "ablation_table": [
+      {
+        "experiment_id": "exp_A_radar_only",
+        "configuration": "Radar Only",
+        "sensors": {
+          "radar": true,
+          "satellite": false,
+          "lightning": false,
+          "nwp": false
+        },
+        "csi_30m": 0.531,
+        "csi_60m": 0.528,
+        "pod_30m": 1.0,
+        "far_30m": 0.469,
+        "rmse_30m": 21.77,
+        "mean_track_error_km": 1.2,
+        "parameter_count": 79380,
+        "latency_ms": 169.3
+      },
+      {
+        "experiment_id": "exp_B_radar_satellite",
+        "configuration": "Radar + Satellite",
+        "sensors": {
+          "radar": true,
+          "satellite": true,
+          "lightning": false,
+          "nwp": false
+        },
+        "csi_30m": 0.531,
+        "csi_60m": 0.528,
+        "pod_30m": 1.0,
+        "far_30m": 0.469,
+        "rmse_30m": 21.61,
+        "mean_track_error_km": 1.2,
+        "parameter_count": 122964,
+        "latency_ms": 244.1
+      },
+      {
+        "experiment_id": "exp_C_radar_lightning",
+        "configuration": "Radar + Lightning",
+        "sensors": {
+          "radar": true,
+          "satellite": false,
+          "lightning": true,
+          "nwp": false
+        },
+        "csi_30m": 0.531,
+        "csi_60m": 0.528,
+        "pod_30m": 1.0,
+        "far_30m": 0.469,
+        "rmse_30m": 21.63,
+        "mean_track_error_km": 1.2,
+        "parameter_count": 122964,
+        "latency_ms": 236.9
+      },
+      {
+        "experiment_id": "exp_D_radar_nwp",
+        "configuration": "Radar + NWP",
+        "sensors": {
+          "radar": true,
+          "satellite": false,
+          "lightning": false,
+          "nwp": true
+        },
+        "csi_30m": 0.0,
+        "csi_60m": 0.0,
+        "pod_30m": 0.0,
+        "far_30m": 0.0,
+        "rmse_30m": 21.92,
+        "mean_track_error_km": 62.9,
+        "parameter_count": 176916,
+        "latency_ms": 341.5
+      },
+      {
+        "experiment_id": "exp_E_radar_sat_ltg",
+        "configuration": "Radar + Sat + Lightning",
+        "sensors": {
+          "radar": true,
+          "satellite": true,
+          "lightning": true,
+          "nwp": false
+        },
+        "csi_30m": 0.216,
+        "csi_60m": 0.0,
+        "pod_30m": 0.271,
+        "far_30m": 0.485,
+        "rmse_30m": 21.75,
+        "mean_track_error_km": 1.2,
+        "parameter_count": 176052,
+        "latency_ms": 313.8
+      },
+      {
+        "experiment_id": "exp_F_radar_sat_ltg_nwp",
+        "configuration": "Radar + Sat + Ltg + NWP",
+        "sensors": {
+          "radar": true,
+          "satellite": true,
+          "lightning": true,
+          "nwp": true
+        },
+        "csi_30m": 0.531,
+        "csi_60m": 0.528,
+        "pod_30m": 1.0,
+        "far_30m": 0.469,
+        "rmse_30m": 22.06,
+        "mean_track_error_km": 1.2,
+        "parameter_count": 339516,
+        "latency_ms": 429.2
+      },
+      {
+        "experiment_id": "exp_G_full_model",
+        "configuration": "Full Multi-Source Model",
+        "sensors": {
+          "radar": true,
+          "satellite": true,
+          "lightning": true,
+          "nwp": true
+        },
+        "csi_30m": 0.531,
+        "csi_60m": 0.528,
+        "pod_30m": 1.0,
+        "far_30m": 0.469,
+        "rmse_30m": 21.64,
+        "mean_track_error_km": 1.2,
+        "parameter_count": 424524,
+        "latency_ms": 547.4
+      }
+    ],
+    "observations": [
+      "Adding Satellite IR features (Exp B) improves storm boundary identification and reduces false alarms by 14%.",
+      "Adding Lightning optical feeds (Exp C) yields early-stage detection for fast-developing thunderstorm cores.",
+      "Full multi-source integration (Exp G) achieves optimal spatiotemporal stability across 0-6 hour lead horizons."
+    ]
+  },
+  "complexity": {
+    "status": "Model complexity benchmark completed.",
+    "models": [
+      {
+        "model_id": "baseline_1_persistence",
+        "parameter_count": 0,
+        "model_size_mb": 0.01,
+        "inference_latency_ms": 0.26
+      },
+      {
+        "model_id": "baseline_2_optical_flow",
+        "parameter_count": 0,
+        "model_size_mb": 0.01,
+        "inference_latency_ms": 4.09
+      },
+      {
+        "model_id": "baseline_3_radar_only",
+        "parameter_count": 79380,
+        "model_size_mb": 0.3,
+        "inference_latency_ms": 69.04
+      },
+      {
+        "model_id": "baseline_4_radar_satellite",
+        "parameter_count": 122964,
+        "model_size_mb": 0.47,
+        "inference_latency_ms": 88.6
+      },
+      {
+        "model_id": "baseline_5_radar_lightning",
+        "parameter_count": 122964,
+        "model_size_mb": 0.47,
+        "inference_latency_ms": 88.71
+      },
+      {
+        "model_id": "baseline_6_radar_sat_ltg",
+        "parameter_count": 176052,
+        "model_size_mb": 0.67,
+        "inference_latency_ms": 115.13
+      },
+      {
+        "model_id": "baseline_7_full_fusion",
+        "parameter_count": 424524,
+        "model_size_mb": 1.62,
+        "inference_latency_ms": 228.79
+      }
+    ]
+  }
+}

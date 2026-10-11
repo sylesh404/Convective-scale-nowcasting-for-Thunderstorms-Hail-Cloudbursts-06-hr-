@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>SIH26084 Convective Nowcasting Demo</title>
+<style>
+body{margin:0;background:#07111f;color:#edf5ff;font-family:Arial,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:24px}
+h1{margin:0 0 5px}.sub{color:#91a8bf;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
+.card{background:#0c1b2c;border:1px solid #25435f;border-radius:15px;padding:16px}
+canvas{width:100%;max-width:600px;background:#02060b;border-radius:10px;image-rendering:pixelated}
+.stat{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #19344b}
+button{margin:12px 6px 0 0;padding:9px 14px;border-radius:8px;border:1px solid #315a7d;background:#143450;color:white;cursor:pointer}
+.badge{padding:4px 9px;border-radius:14px;background:#5b251f}
+.note{color:#91a8bf;font-size:13px;line-height:1.55}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+<h1>⚡ SIH26084 — Convective Nowcasting</h1>
+<div class="sub">Synthetic-data prototype • 0–3 hour demo • 30-minute forecast steps</div>
+<div class="grid">
+<div class="card"><canvas id="map" width="512" height="512"></canvas>
+<div><button onclick="move(-1)">◀</button><button onclick="move(1)">▶</button><button onclick="play()">▶ Play forecast</button></div></div>
+<div class="card">
+<h3>AI Forecast Output</h3>
+<div class="stat"><span>Lead time</span><b id="time">+0 min</b></div>
+<div class="stat"><span>Reflectivity proxy</span><b id="dbz">—</b></div>
+<div class="stat"><span>Lightning density</span><b id="light">—</b></div>
+<div class="stat"><span>Hail probability</span><b id="hail">—</b></div>
+<div class="stat"><span>Hazard level</span><span class="badge" id="risk">—</span></div>
+<h3>Production pipeline</h3>
+<div class="note">DWR reflectivity/velocity + INSAT + lightning + AWS/NWP → quality control → 1–3 km grid → ConvLSTM/U-Net fusion → lightning/hail/cloudburst/downburst layers → GIS dashboard.</div>
+<h3>Important</h3>
+<div class="note">This demo uses synthetic weather-like data. It is not an operational forecast. Replace the synthetic channels with approved MOSDAC/IMD observations when access is available.</div>
+</div></div></div>
+<script>
+let k=0;const c=document.getElementById("map"),ctx=c.getContext("2d"),N=16;
+function draw(){
+ctx.clearRect(0,0,512,512);let cx=4+k*.85,cy=10-k*.28,max=0,sum=0,ls=0,hs=0;
+for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+let q=Math.min(1,Math.exp(-((x-cx)**2+(y-cy)**2)/8)*(1+k*.09));
+max=Math.max(max,q);sum+=q;ls+=q*q;hs+=Math.max(0,q-.5)*1.8;
+ctx.fillStyle=`rgb(${30+220*q},${95+130*(1-q)},${245*(1-q)+30})`;
+ctx.fillRect(x*32,y*32,32,32)}
+document.getElementById("time").textContent="+"+(k*30)+" min";
+document.getElementById("dbz").textContent=Math.round(sum/256*65)+" dBZ";
+document.getElementById("light").textContent=Math.round(ls/256*100)+" strikes/grid";
+document.getElementById("hail").textContent=Math.min(99,Math.round(hs/256*100))+"%";
+document.getElementById("risk").textContent=max>.9?"SEVERE":max>.65?"HIGH":"MODERATE";
+}
+function move(d){k=Math.max(0,Math.min(5,k+d));draw()}
+function play(){let i=0,t=setInterval(()=>{k=i++;draw();if(i>5)clearInterval(t)},500)}
+draw();
+</script></body></html>
